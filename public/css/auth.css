@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: #c47d1a;
+    min-height: 100%;
+}
+
+body {
+    overflow-y: auto;
+    min-height: 100vh;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: linear-gradient(180deg, #4a2a00 0%, #5c3400 15%, #6d3e00 30%, #7a4500 45%, #8a4f00 60%, #9e5a00 75%, #b36a0a 88%, #c47d1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    min-height: 100vh;
+    background-image:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 26px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 26px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 8px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 8px);
+    background-size: 28px 28px, 28px 28px, 8px 8px, 8px 8px;
+    opacity: 0.6;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(252, 218, 93, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 92% 8%, rgba(252, 218, 93, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 85% 78%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 15% 85%, rgba(252, 218, 93, 0.08) 0%, transparent 45%);
+}
+
+@keyframes warmPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes warmPulseSlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.08);
+    }
+}
+
+.animate-warm-pulse {
+    animation: warmPulse 2.5s ease-in-out infinite;
+}
+
+.animate-warm-pulse-slow {
+    animation: warmPulseSlow 3.5s ease-in-out infinite;
+}
+
+.input-focus-ring:focus {
+    outline: none;
+    border-color: #d4a373;
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.3);
+}
+
+.glass-card {
+    background: rgba(255, 252, 245, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.gender-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+    flex: 1;
+    justify-content: center;
+}
+
+.gender-option:hover {
+    border-color: #d4a373;
+    background: rgba(212, 163, 115, 0.08);
+}
+
+.gender-option input[type="radio"] {
+    display: none;
+}
+
+.gender-option .gender-icon img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.gender-option .gender-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5a3d1a;
+    transition: all 0.3s ease;
+}
+
+.gender-option.selected,
+.gender-option:has(input[type="radio"]:checked) {
+    border-color: #8a4f00;
+    background: rgba(138, 79, 0, 0.08);
+    box-shadow: 0 0 0 3px rgba(138, 79, 0, 0.15);
+}
+
+.gender-option.selected .gender-label,
+.gender-option:has(input[type="radio"]:checked) .gender-label {
+    color: #8a4f00;
+    font-weight: 700;
+}
