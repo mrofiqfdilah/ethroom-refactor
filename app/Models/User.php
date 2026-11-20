@@ -48,4 +48,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+      public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(KelasSekolah::class, 'id_kelas');
+    }
 }

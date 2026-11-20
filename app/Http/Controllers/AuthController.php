@@ -70,7 +70,7 @@ class AuthController extends Controller
         return redirect()->route('guru.dashboard')->with('success', 'Selamat datang Guru ' . $user->nama_lengkap . '!');
     }
 
-    return redirect()->route('siswa.dashboard')->with('success', 'Selamat datang Siswa ' . $user->nama_lengkap . '!');
+    return redirect()->route('siswa.tes_kognitif')->with('success', 'Selamat datang Siswa ' . $user->nama_lengkap . '!');
 }
 
    public function login_store(Request $request)
@@ -89,7 +89,7 @@ class AuthController extends Controller
             return redirect()->intended('/guru/dashboard')->with('success', 'Selamat datang Guru ' . Auth::user()->nama_lengkap . '!');
         }
 
-        return redirect()->intended(route('siswa.home'))->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap . '!');
+        return redirect()->intended(route('siswa.tes_kognitif'))->with('success', 'Selamat datang ' . Auth::user()->nama_lengkap . '!');
     }
 
     return back()->withErrors([

@@ -29,15 +29,18 @@ function handleRoleChange() {
         identityLabel.textContent = 'NISN';
         identityLabel.setAttribute('for', 'nisn');
 
+        // Sembunyikan & nonaktifkan NIP
         nipInput.classList.add('hidden');
         nipInput.disabled = true;
         nipInput.required = false;
-        nipInput.value = '';
+        nipInput.value = '';          // reset nilai NIP
 
+        // Tampilkan & aktifkan NISN
         nisnInput.classList.remove('hidden');
         nisnInput.disabled = false;
         nisnInput.required = true;
 
+        // Tampilkan kelas
         kelasContainer.classList.remove('hidden');
         idKelas.disabled = false;
         idKelas.required = true;
@@ -45,15 +48,18 @@ function handleRoleChange() {
         identityLabel.textContent = 'NIP';
         identityLabel.setAttribute('for', 'nip');
 
+        // Sembunyikan & nonaktifkan NISN
         nisnInput.classList.add('hidden');
         nisnInput.disabled = true;
         nisnInput.required = false;
-        nisnInput.value = '';
+        nisnInput.value = '';         // reset nilai NISN
 
+        // Tampilkan & aktifkan NIP
         nipInput.classList.remove('hidden');
         nipInput.disabled = false;
         nipInput.required = true;
 
+        // Sembunyikan kelas
         kelasContainer.classList.add('hidden');
         idKelas.disabled = true;
         idKelas.required = false;
@@ -62,25 +68,17 @@ function handleRoleChange() {
 }
 
 function selectGender(gender) {
-    var genderOptions = document.querySelectorAll('.gender-option');
-    if (genderOptions.length === 0) return;
-
-    genderOptions.forEach(function (el) {
+    document.querySelectorAll('.gender-option').forEach(function (el) {
         el.classList.remove('selected');
     });
 
-    if (gender === 'Laki-laki') {
-        var maleEl = document.getElementById('gender-male');
-        if (maleEl) {
-            maleEl.classList.add('selected');
-            maleEl.querySelector('input[type="radio"]').checked = true;
-        }
-    } else if (gender === 'Perempuan') {
-        var femaleEl = document.getElementById('gender-female');
-        if (femaleEl) {
-            femaleEl.classList.add('selected');
-            femaleEl.querySelector('input[type="radio"]').checked = true;
-        }
+    var target = gender === 'Laki-laki'
+        ? document.getElementById('label-male')
+        : document.getElementById('label-female');
+
+    if (target) {
+        target.classList.add('selected');
+        target.querySelector('input[type="radio"]').checked = true;
     }
 }
 

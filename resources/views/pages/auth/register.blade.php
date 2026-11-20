@@ -78,29 +78,34 @@
                         <i class="ri-community-line absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-600/60 text-lg"></i>
                         <select name="id_kelas" id="id_kelas" data-old="{{ old('id_kelas') }}" class="w-full pl-11 pr-4 py-3 bg-white/70 border border-amber-200/60 rounded-xl text-stone-800 input-focus-ring transition-all duration-200 appearance-none cursor-pointer">
                             <option value="">-- Pilih Kelas --</option>
+
                         </select>
                         <i class="ri-arrow-down-s-line absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none text-xl"></i>
                     </div>
                 </div>
 
-                <div>
-                    <label id="identityLabel" for="nip" class="block text-xs font-semibold text-stone-700 uppercase tracking-widest mb-1.5">
-                        {{ old('role') == 'Siswa' ? 'NISN' : 'NIP' }}
-                    </label>
-                    <div class="relative">
-                        <i class="ri-id-card-line absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-600/60 text-lg"></i>
+               <div>
+    <label id="identityLabel" for="nip" class="block text-xs font-semibold text-stone-700 uppercase tracking-widest mb-1.5">
+        {{ old('role') == 'Siswa' ? 'NISN' : 'NIP' }}
+    </label>
+    <div class="relative">
+        <i class="ri-id-card-line absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-600/60 text-lg"></i>
 
-                        <input type="text" inputmode="numeric" pattern="[0-9]{18}" maxlength="18"
-                            name="nip" id="nip" value="{{ old('nip') }}"
-                            class="w-full pl-11 pr-4 py-3 bg-white/70 border border-amber-200/60 rounded-xl text-stone-800 placeholder:text-stone-400/70 input-focus-ring transition-all duration-200"
-                            placeholder="Masukkan NIP Anda (18 digit)" />
+        {{-- NIP: hanya tampil & required jika bukan Siswa --}}
+        <input type="text" inputmode="numeric" pattern="[0-9]{18}" maxlength="18"
+            name="nip" id="nip" value="{{ old('nip') }}"
+            class="w-full pl-11 pr-4 py-3 bg-white/70 border border-amber-200/60 rounded-xl text-stone-800 placeholder:text-stone-400/70 input-focus-ring transition-all duration-200 {{ old('role') == 'Siswa' ? 'hidden' : '' }}"
+            placeholder="Masukkan NIP Anda (18 digit)"
+            @if(old('role') == 'Siswa') disabled @else required @endif />
 
-                        <input type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
-                            name="nisn" id="nisn" value="{{ old('nisn') }}"
-                            class="w-full pl-11 pr-4 py-3 bg-white/70 border border-amber-200/60 rounded-xl text-stone-800 placeholder:text-stone-400/70 input-focus-ring transition-all duration-200 hidden"
-                            placeholder="Masukkan NISN Anda (10 digit)" />
-                    </div>
-                </div>
+        {{-- NISN: hanya tampil & required jika Siswa --}}
+        <input type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+            name="nisn" id="nisn" value="{{ old('nisn') }}"
+            class="w-full pl-11 pr-4 py-3 bg-white/70 border border-amber-200/60 rounded-xl text-stone-800 placeholder:text-stone-400/70 input-focus-ring transition-all duration-200 {{ old('role') == 'Siswa' ? '' : 'hidden' }}"
+            placeholder="Masukkan NISN Anda (10 digit)"
+            @if(old('role') == 'Siswa') required @else disabled @endif />
+    </div>
+</div>
 
                <div>
     <label class="block text-xs font-semibold text-stone-700 uppercase tracking-widest mb-1.5">Jenis Kelamin</label>
